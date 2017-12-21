@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<!--声明当前页面的编码集charset=gbk中文编码gb2312,charset=utf-8 国际编码-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<!--当前页面的三要素-->
+		<title>标题</title>
+		<meta name="Keywords" content="关键词,关键词">
+		<meta name="description" content="描述">		
+
+		<!--引用css , js-->	
+		<link href="" rel="stylesheet" type="text/css" />
+		<style type="text/css"></style>
+	</head>
+
+	<body>
+
+		<div class="post">
+				<img src="hhh.jpg"/>
+		</div>
+		<br/>
+		<div class="post">
+				<img src="bbb.jpg"/>
+		</div>
+
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+			
+					$(document).ready(function() {
+						 $('.post img').each(function() {
+						 var praWidth = $(this).parent().width(); // 父容器宽度
+						 var praHeight = $(this).parent().height();    // 父容器的高度
+						 var width = $(this).width();    // 图片实际宽度
+						 var height = $(this).height();  // 图片实际高度
+						 var ratio = width / height;  // 缩放比例
+						 var toLeft = 0; // 设置左偏量
+						 var toTop = 0; // 设置右偏移量
+						 width = praWidth;   // 设置宽度为当前父容器宽度
+						 height = width / ratio;    // 计算等比例缩放后的高度 
+						if(height < praHeight) { // 如果高度小于父容器告诉
+							height = praHeight;  // 设置图片为父容器高度
+							width = height * ratio; // 设置图片等比缩放后的宽度
+						}
+						
+						// 获取偏移量
+						if(width > praWidth) {
+							toLeft = (width - praWidth) / 2;
+						} else {
+							toTop = (height - praHeight) / 2;
+						}
+	
+						// 设定等比例缩放后的宽高
+						$(this).css("height", height);
+						$(this).css("width", width);
+						// 设定等比例缩放后的偏移量
+						$(this).css("margin-left", -toLeft);
+						$(this).css("margin-top", -toTop);
+					 });
+					 });
+		
+		</script>
+	</body>
+</html>
+
+
+
+<style>
+.post{
+	margin: 0 auto;
+	width: 600px;
+	height: 400px;
+	background: #ccc;
+	overflow: hidden;
+}
+
+</style>
